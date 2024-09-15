@@ -27,4 +27,26 @@ create the root web directory for your_domain using the floowing commands then a
 1. listen - defines what port will listen on
 2. root - defines the document root where the files served by this website are stored
 3. index - defines in which order Nginx will prioritize files for this websites 
-4. server_name - defines which domain names or IP addresses this server block should respond t0
+4. server_name - defines which domain names or IP addresses this server block should respond to
+5. location/ - checks for the existence of files or directories matching a URL request
+6. location ~ \.php$ - This location block handles the actual PHP processing by pointing Nginx to the fastcgi-php.
+7. location ~/\.ht - The last location blocks deals with *.htaccess* files, which Nginx does not process
+Activate the configuration by linking to the config file from Nginx's *sites-enabled* using: $sudo ln -s /etc/nginx/sites-available/projectLEMP /etc/nginx/sites-enabled/
+this will tell Nginx to use the configuration next time it is reloaded then test your configuration for syntax errors then disable default Nginx host that is currently configure to listen on port 80 then finally reload Nginx to apply changes you'll see this  ![reference image](/Pictures/pic13.PNG) 
+Now go to your browser and access your IP address
+The next step is to test PHP with Nginx because at this point your LEMP Stack is completely installed and fully running 
+Next is to create a PHP file in your document root open a new file called *info.php* your document root in you text editor types the following lines:
+1. <?php
+2. phpinfo();
+YOu can now access your web browser by visiting the domain name or public IP address, after checking relevevant information about your PHP server through that page it's best to remove the file you created as it contains sensitive information about your PHP environment and your Ubuntu server. if you follow the above procedure you should see this ![reference image](/Pictures/pic14.PNG) and this ![reference image](/Pictures/pic15.PNG) 
+
+## 3. Retrieving data from MySQL database with PHP
+Here you will create a test database (DB) with simple "To do list" and configure access to it, so the Nginx website would be able to query data from the DB and display it.
+1. First we create a database named *example_databse* and user named *example_user* but you can replace the names with diffrent values. Connect to the MySQL console using the root account: $sudo mysql then cretae a database using the following command ![reference image](/Pictures/pic16.PNG)
+2. Now we create a test table named todo_list. from MySQL console ![reference image](/Pictures/pic17.PNG)
+3. Use the Nano editor to write the following script using this command $ nano /var/www/projectLEMP/todo_list.php ![reference image](/Pictures/pic18.PNG) save and close when you done editing
+4. access your page using your browser by visiting the domain name or IP address configured on your website and you'll see this ![reference image](/Pictures/pic19.PNG)
+5. Which means you PHP environment is ready to connect and interact with your MySQL server.
+### AND THIS HAS COME TO THE END OF OUR LESSON I HOPE YOU ENJOYED THE RIDE 
+
+
